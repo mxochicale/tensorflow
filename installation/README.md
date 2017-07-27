@@ -198,6 +198,7 @@ pip install /tmp/tensorflow_pkg/tensorflow-1.0.0-cp35-cp35m-linux_x86_64.whl
 
 
 
+<<<<<<< HEAD
 
 ## [Getting Tensorflow to work with GPU NVidia GTX 1080 on Ubuntu 16.04 LTS](http://abhay.harpale.net/blog/machine-learning/deep-learning/getting-tensorflow-to-work-with-gpu-nvidia-gtx-1080-on-ubuntu-16-04-lts/)
 LipingY, January 19, 2017
@@ -253,3 +254,11 @@ General setup
 * Build TensorFlow
 * Build & Install Pip Package
 * Test Your Installation
+=======
+# How to use TF (Tutorials)
+https://www.tensorflow.org/get_started/  
+https://www.oreilly.com/learning/dive-into-tensorflow-with-linux  
+https://petewarden.com/2016/02/28/tensorflow-for-poets/
+http://tanzimsaqib.com/deep-learning-tensorflow  
+https://www.quora.com/What-is-the-best-websites-to-learn-machine-learning-TensorFlow    
+>>>>>>> 329e710ba42127651485617da07c71d2ad903e44
