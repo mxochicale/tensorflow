@@ -11,7 +11,7 @@ I can forsee a problem with the versions of python, the version of the libraries
  a bit of advices and put it together a set of common commmands for my particupar
  hardware availablity.
 
-# Machine
+# Machine @ miguel-admin@linuxtestdr
 
 ## ID
 
@@ -33,7 +33,7 @@ $ lspci -v
 	Memory at c0000000 (64-bit, prefetchable) [size=256M]
 	Memory at d0000000 (64-bit, prefetchable) [size=32M]
 	I/O ports at e000 [size=128]
-	Expansion ROM at fb000000 [disabled] [size=512K]
+	Expansion ROM at 000c0000 [disabled] [size=128K]
 	Capabilities: <access denied>
 	Kernel driver in use: nouveau
 	Kernel modules: nvidiafb, nouveau
@@ -44,6 +44,7 @@ $ lspci -v
 ### CPU
 ```
 $  lscpu
+lscpu
 Architecture:          x86_64
 CPU op-mode(s):        32-bit, 64-bit
 Byte Order:            Little Endian
@@ -61,7 +62,7 @@ Stepping:              5
 CPU MHz:               2661.000
 CPU max MHz:           2661.0000
 CPU min MHz:           1197.0000
-BogoMIPS:              5319.96
+BogoMIPS:              5319.95
 Virtualisation:        VT-x
 L1d cache:             32K
 L1i cache:             32K
@@ -69,23 +70,22 @@ L2 cache:              256K
 L3 cache:              8192K
 NUMA node0 CPU(s):     0-3
 Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm sse4_1 sse4_2 popcnt lahf_lm tpr_shadow vnmi flexpriority ept vpid dtherm ida
-map479@map479-DQ57TM:~$
-
 ```
 
 ### Memory
 
 ```
 $ cat /proc/meminfo
-MemTotal:        3976668 kB
-MemFree:          350380 kB
-MemAvailable:    1549888 kB
-Buffers:          172964 kB
-Cached:          1100120 kB
-SwapCached:         4080 kB
-Active:          2059564 kB
-Inactive:        1169200 kB
+MemTotal:        3974732 kB
+MemFree:          344208 kB
+MemAvailable:    1871072 kB
+Buffers:          105552 kB
+Cached:          1599140 kB
+SwapCached:            0 kB
+Active:          2355812 kB
+Inactive:         962416 kB
 ```
+
 
 
 
