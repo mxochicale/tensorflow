@@ -106,8 +106,32 @@ Do you want to continue? [Y/n]
 ```
 
 
-Once nvidia driver is installed, restart the computer. You can verify the driver using the following command.
+Unfortunatelly, after rebooting the machine. some issues with the GPU did not allow
+the machine to reboot
 
+two possible solutions
+
+
+i) After rebooting I couldn't get past the login screen. The solution that worked for me was to disable secure boot.
+ii) I believe another version of nvidia drive should be installed
+
+sudo apt-get install nvidia-361
+https://askubuntu.com/questions/735572/how-to-install-nvidia-geforce-gtx-960-driver/735580
+or
+sudo apt-get install nvidia-364
+https://askubuntu.com/questions/768959/ubuntu-16-04-nvidia-drivers-for-geforce-gtx-960m
+
+
+
+
+.
+.
+.
+
+
+
+Once nvidia driver is installed, restart the computer. You can verify the driver using the following command.
 ```
 cat /proc/driver/nvidia/version
+
 ```
