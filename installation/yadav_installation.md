@@ -148,19 +148,173 @@ Do you want to continue? [Y/n]
 
 Once nvidia driver is installed, restart the computer.
 
-
-.
-.
-.
-
-
-
 You can verify the driver using the following command.
 ```
-cat /proc/driver/nvidia/version
+$ cat /proc/driver/nvidia/version
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  375.82  Wed Jul 19 21:16:49 PDT 2017
+GCC version:  gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4)
+
 
 ```
 
+# Step 4: Cuda-8 installation
+
+https://developer.nvidia.com/cuda-downloads
+On the link, you can select your system and download the appropriate package file.
+
+```
+$ sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+$ sudo apt-get update
+```
+
+```
+$ sudo apt-get install cuda
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates-java cuda-8-0 cuda-command-line-tools-8-0 cuda-core-8-0 cuda-cublas-8-0 cuda-cublas-dev-8-0 cuda-cudart-8-0 cuda-cudart-dev-8-0 cuda-cufft-8-0 cuda-cufft-dev-8-0 cuda-curand-8-0
+  cuda-curand-dev-8-0 cuda-cusolver-8-0 cuda-cusolver-dev-8-0 cuda-cusparse-8-0 cuda-cusparse-dev-8-0 cuda-demo-suite-8-0 cuda-documentation-8-0 cuda-driver-dev-8-0 cuda-drivers cuda-license-8-0
+  cuda-misc-headers-8-0 cuda-npp-8-0 cuda-npp-dev-8-0 cuda-nvgraph-8-0 cuda-nvgraph-dev-8-0 cuda-nvml-dev-8-0 cuda-nvrtc-8-0 cuda-nvrtc-dev-8-0 cuda-runtime-8-0 cuda-samples-8-0 cuda-toolkit-8-0
+  cuda-visual-tools-8-0 default-jre default-jre-headless fonts-dejavu-extra freeglut3 freeglut3-dev java-common libdrm-dev libgif7 libgl1-mesa-dev libglu1-mesa-dev libice-dev libpthread-stubs0-dev
+  libsm-dev libx11-dev libx11-doc libx11-xcb-dev libxau-dev libxcb-dri2-0-dev libxcb-dri3-dev libxcb-glx0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-shape0-dev libxcb-sync-dev
+  libxcb-xfixes0-dev libxcb1-dev libxdamage-dev libxdmcp-dev libxext-dev libxfixes-dev libxi-dev libxmu-dev libxmu-headers libxshmfence-dev libxt-dev libxxf86vm-dev mesa-common-dev nvidia-375-dev
+  nvidia-modprobe openjdk-8-jre openjdk-8-jre-headless x11proto-core-dev x11proto-damage-dev x11proto-dri2-dev x11proto-fixes-dev x11proto-gl-dev x11proto-input-dev x11proto-kb-dev x11proto-xext-dev
+  x11proto-xf86vidmode-dev xorg-sgml-doctools xtrans-dev
+Suggested packages:
+  default-java-plugin libice-doc libsm-doc libxcb-doc libxext-doc libxt-doc icedtea-8-plugin openjdk-8-jre-jamvm fonts-ipafont-gothic fonts-ipafont-mincho fonts-wqy-microhei fonts-wqy-zenhei fonts-indic
+The following NEW packages will be installed
+  ca-certificates-java cuda cuda-8-0 cuda-command-line-tools-8-0 cuda-core-8-0 cuda-cublas-8-0 cuda-cublas-dev-8-0 cuda-cudart-8-0 cuda-cudart-dev-8-0 cuda-cufft-8-0 cuda-cufft-dev-8-0 cuda-curand-8-0
+  cuda-curand-dev-8-0 cuda-cusolver-8-0 cuda-cusolver-dev-8-0 cuda-cusparse-8-0 cuda-cusparse-dev-8-0 cuda-demo-suite-8-0 cuda-documentation-8-0 cuda-driver-dev-8-0 cuda-drivers cuda-license-8-0
+  cuda-misc-headers-8-0 cuda-npp-8-0 cuda-npp-dev-8-0 cuda-nvgraph-8-0 cuda-nvgraph-dev-8-0 cuda-nvml-dev-8-0 cuda-nvrtc-8-0 cuda-nvrtc-dev-8-0 cuda-runtime-8-0 cuda-samples-8-0 cuda-toolkit-8-0
+  cuda-visual-tools-8-0 default-jre default-jre-headless fonts-dejavu-extra freeglut3 freeglut3-dev java-common libdrm-dev libgif7 libgl1-mesa-dev libglu1-mesa-dev libice-dev libpthread-stubs0-dev
+  libsm-dev libx11-dev libx11-doc libx11-xcb-dev libxau-dev libxcb-dri2-0-dev libxcb-dri3-dev libxcb-glx0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-shape0-dev libxcb-sync-dev
+  libxcb-xfixes0-dev libxcb1-dev libxdamage-dev libxdmcp-dev libxext-dev libxfixes-dev libxi-dev libxmu-dev libxmu-headers libxshmfence-dev libxt-dev libxxf86vm-dev mesa-common-dev nvidia-375-dev
+  nvidia-modprobe openjdk-8-jre openjdk-8-jre-headless x11proto-core-dev x11proto-damage-dev x11proto-dri2-dev x11proto-fixes-dev x11proto-gl-dev x11proto-input-dev x11proto-kb-dev x11proto-xext-dev
+  x11proto-xf86vidmode-dev xorg-sgml-doctools xtrans-dev
+0 to upgrade, 87 to newly install, 0 to remove and 29 not to upgrade.
+Need to get 34.2 MB/1,346 MB of archives.
+After this operation, 2,215 MB of additional disk space will be used.
+Do you want to continue? [Y/n]
+```
+
+
+
+Next step is to add libraries to .bashrc file,
+
+```
+echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+
+After sourcing the bashrc file, the CUDA version can be verified using
+```
+$ nvcc -V
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2016 NVIDIA Corporation
+Built on Tue_Jan_10_13:22:03_CST_2017
+Cuda compilation tools, release 8.0, V8.0.61
+
+```
+
+# Step 5: Download cuDNN v6.0 (April 27, 2017), for CUDA 8.0
+
+https://developer.nvidia.com/cudnn
+Download cuDNN v6.0 (April 27, 2017), for CUDA 8.0 /cuDNN v6.0 Library for Linux
+[Solution](https://github.com/tensorflow/tensorflow/issues/12416)
+
+
+```
+cd ~/Downloads/
+tar xvf cudnn*.tgz
+cd cuda
+sudo cp */*.h /usr/local/cuda/include/
+sudo cp */libcudnn* /usr/local/cuda/lib64/
+sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
+```
+
+# Step 6: Install python stuff
+
+
+```
+sudo apt-get update
+sudo apt-get install -y python-numpy python-scipy python-nose python-h5py python-skimage python-matplotlib python-pandas python-sklearn python-sympy
+sudo apt-get clean && sudo apt-get autoremove
+sudo rm -rf /var/lib/apt/lists/*
+```
+
+
+Next install more python goodies like virtual environment, pip, pip3, jupyter notebook, etc.
+
+```
+sudo apt-get update
+sudo apt-get install git python-dev python3-dev python-numpy python3-numpy build-essential python-pip python3-pip python-virtualenv swig python-wheel libcurl3-dev
+sudo apt-get install -y libfreetype6-dev libpng12-dev
+pip3 install -U matplotlib ipython[all] jupyter pandas scikit-image
+```
+
+
+# Step 7: Install openBLAS from its repository
+
+```
+mkdir ~/git && cd ~/git
+git clone https://github.com/xianyi/OpenBLAS.git && cd OpenBLAS
+make FC=gfortran -j16
+sudo make PREFIX=/usr/local install
+```
+
+
+# Step 8: Install tensorflow
+
+
+
+```
+pip3 install --upgrade tensorflow-gpu
+```
+testing tensor flow
+```
+python3
+>>> import tensorflow as tf
+>>> a = tf.constant(5)
+>>> b = tf.constant(6)
+>>> sess = tf.Session()
+>>> sess.run(a+b)
+
+// this should print bunch of messages showing device status etc. // If everything goes well, you should see gpu listed in device
+
+>> sess.close()
+```
+
+
+# Step 9: Install keras
+
+
+```
+pip3 install keras
+```
+
+```
+python3
+>>> import keras
+```
+
+
+# TODO
+```
+Step 10: Install opencv
+Install packages to read different image formats.
+Install qt5 for
+Install libraries to video format
+Install gtk for using GUI
+Install libatlas for opencv functions
+Install hdf5 library
+Clone openCV from repository where opencv is installed with cuda8.
+Instal opencv with python 3.
+
+Step 10: Virtual environments
+```
 
 
 # ISSUES #1 No rebooting after installing sudo apt-get install nvidia-340
